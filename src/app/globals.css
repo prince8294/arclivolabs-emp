@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #0b0f19;
-  --color-sidebar: #111827;
-  --color-panel: #1f2937;
-  --color-accent: #8b7bff;
-  --shadow-card: 0 12px 32px rgb(0 0 0 / 0.15);
+  --color-canvas: #0c0911;
+  --color-sidebar: #120e19;
+  --color-panel: #17121f;
+  --color-accent: #a98cff;
+  --shadow-card: 0 18px 54px rgb(3 1 7 / 0.28);
 }
 
 :root {
   color-scheme: dark;
-  background: #0b0f19;
+  background: #0c0911;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -21,24 +21,102 @@
 
 html {
   min-width: 320px;
-  background: #0b0f19;
+  background: #0c0911;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(ellipse at 70% -20%, rgb(91 70 194 / 9%), transparent 40%),
-    #0b0f19;
-  color: #f8fafc;
-  font-family: Arial, Helvetica, sans-serif;
+    radial-gradient(ellipse at 75% -20%, rgb(169 140 255 / 13%), transparent 42%),
+    radial-gradient(ellipse at -10% 75%, rgb(212 125 225 / 6%), transparent 36%),
+    #0c0911;
+  color: #faf8ff;
+  font-family: "Avenir Next", "Segoe UI", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgb(169 140 255 / 0.85);
+  outline-offset: 3px;
+}
+
+input,
+select,
+textarea {
+  background-color: #130f1b !important;
+}
+
+select {
+  color-scheme: dark;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0c0911;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid #0c0911;
+  border-radius: 999px;
+  background: rgb(169 140 255 / 0.32);
+}
+
+.app-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.app-shell::before {
+  position: fixed;
+  z-index: -1;
+  top: 76px;
+  right: 0;
+  width: min(54vw, 780px);
+  height: 420px;
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(ellipse at top right, rgb(169 140 255 / 0.085), transparent 68%);
+}
+
+.page-enter {
+  animation: page-enter 360ms cubic-bezier(.2, .7, .2, 1) both;
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .page-enter { animation: none; }
+}
+
 ::selection {
-  background: rgb(139 123 255 / 35%);
+  background: rgb(169 140 255 / 35%);
 }

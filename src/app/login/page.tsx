@@ -10,41 +10,57 @@ export default async function LoginPage() {
   if (session) redirect(session.user.role === "admin" ? "/admin/dashboard" : "/employee/dashboard");
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12">
-      <div aria-hidden className="pointer-events-none absolute -left-40 top-1/4 size-[420px] rounded-full bg-violet-700/10 blur-[120px]" />
-      <div aria-hidden className="pointer-events-none absolute -right-36 bottom-0 size-[420px] rounded-full bg-indigo-600/10 blur-[130px]" />
-      <div className="relative grid w-full max-w-[980px] overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#111827]/90 shadow-2xl shadow-black/40 lg:grid-cols-[1fr_1.04fr]">
-        <section className="hidden flex-col justify-between border-r border-white/[0.06] bg-gradient-to-br from-[#171b30] via-[#131a2b] to-[#111827] p-10 lg:flex">
-          <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 font-bold text-white shadow-lg shadow-indigo-950/50">A</span>
-            <span className="text-base font-semibold tracking-tight text-white">ArclivoLabs</span>
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0c0911] px-4 py-10 sm:px-6">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_15%,rgba(169,140,255,0.14),transparent_36%),radial-gradient(ellipse_at_88%_82%,rgba(212,125,225,0.09),transparent_35%)]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.035)_1px,transparent_1px)] [background-size:52px_52px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
+      <div className="relative grid w-full max-w-[1040px] overflow-hidden rounded-[30px] border border-white/[0.09] bg-[#120e19]/94 shadow-[0_40px_120px_rgba(3,1,7,0.65)] ring-1 ring-white/[0.018] backdrop-blur-xl lg:grid-cols-[1.05fr_0.95fr]">
+        <section className="relative hidden min-h-[660px] flex-col justify-between overflow-hidden border-r border-white/[0.07] bg-[linear-gradient(145deg,#1d1428_0%,#15101d_52%,#110d17_100%)] p-12 lg:flex">
+          <div aria-hidden className="absolute -right-28 -top-24 size-80 rounded-full border border-violet-300/10" />
+          <div aria-hidden className="absolute -right-12 -top-8 size-52 rounded-full border border-fuchsia-300/[0.08]" />
+          <div className="relative flex items-center gap-3.5">
+            <span className="flex size-12 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[#21152f] shadow-[0_18px_45px_rgba(169,140,255,0.2)]">
+              <img src="/artwork/arclivo-mark.svg" alt="" className="size-full" />
+            </span>
+            <span>
+              <span className="block text-[15px] font-semibold uppercase tracking-[0.13em] text-white">Arclivo</span>
+              <span className="mt-1 block text-[9px] font-medium uppercase tracking-[0.24em] text-violet-200/55">Team workspace</span>
+            </span>
           </div>
-          <div className="max-w-sm">
-            <div className="mb-5 h-px w-12 bg-accent" />
-            <p className="text-sm font-medium uppercase tracking-[0.17em] text-violet-200/80">People. Craft. Progress.</p>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white">
-              A focused space to do your best work.
+          <div className="relative max-w-sm pb-8">
+            <span className="mb-6 block h-0.5 w-12 rounded-full bg-gradient-to-r from-violet-300 via-fuchsia-300 to-orange-200" />
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-violet-200/65">People · craft · progress</p>
+            <h2 className="mt-5 text-[40px] font-semibold leading-[1.08] tracking-[-0.035em] text-white">
+              Good work starts with a clear space.
             </h2>
-            <p className="mt-4 text-sm leading-7 text-slate-400">
-              Your team workspace for work, collaboration, and everything we build together.
+            <p className="mt-5 max-w-xs text-sm leading-7 text-slate-400">
+              One calm place for the team to stay aligned, move work forward, and keep the important details close.
             </p>
+            <div className="mt-9 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">
+              <span className="size-1.5 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(110,231,183,0.6)]" />
+              Secure internal access
+            </div>
           </div>
-          <p className="text-xs text-slate-600">Internal workspace · ArclivoLabs</p>
+          <p className="relative text-[10px] uppercase tracking-[0.18em] text-slate-600">Arclivo · Internal workspace</p>
         </section>
-        <section className="px-6 py-10 sm:px-10 sm:py-12 lg:px-12 lg:py-14">
-          <div className="mb-9 flex items-center gap-3 lg:hidden">
-            <span className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 text-sm font-bold text-white">A</span>
-            <span className="text-sm font-semibold text-white">ArclivoLabs</span>
+        <section className="flex flex-col justify-center px-6 py-10 sm:px-11 sm:py-14 lg:px-14">
+          <div className="mb-10 flex items-center gap-3 lg:hidden">
+            <span className="flex size-11 items-center justify-center overflow-hidden rounded-[15px] border border-white/10 bg-[#21152f] shadow-lg shadow-violet-950/30">
+              <img src="/artwork/arclivo-mark.svg" alt="" className="size-full" />
+            </span>
+            <span>
+              <span className="block text-sm font-semibold uppercase tracking-[0.12em] text-white">Arclivo</span>
+              <span className="mt-0.5 block text-[9px] uppercase tracking-[0.2em] text-slate-500">Team workspace</span>
+            </span>
           </div>
-          <div className="mb-8">
-            <p className="text-sm font-medium text-violet-300">Your workspace awaits</p>
-            <h1 className="mt-2 text-[30px] font-semibold tracking-tight text-white">Welcome Back</h1>
-            <p className="mt-2 text-sm text-slate-400">Sign in to your workspace</p>
+          <div className="mb-9">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-violet-300/75">Employee portal</p>
+            <h1 className="mt-3 text-[34px] font-semibold tracking-[-0.035em] text-white">Welcome back</h1>
+            <p className="mt-2.5 text-sm leading-6 text-slate-400">Sign in with your Arclivo work account.</p>
           </div>
           <LoginForm />
-          <p className="mt-8 text-center text-xs leading-5 text-slate-500">
-            Access is limited to ArclivoLabs team members.<br />
-            Need an account? Contact your administrator.
+          <p className="mt-8 border-t border-white/[0.06] pt-6 text-center text-[11px] leading-5 text-slate-500">
+            Access is limited to authorised team members.<br />
+            For account help, contact your administrator.
           </p>
         </section>
       </div>

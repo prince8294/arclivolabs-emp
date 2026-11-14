@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     template: "%s | ArclivoLabs",
   },
   description: "Internal employee workspace for ArclivoLabs.",
+  icons: { icon: "/artwork/arclivo-mark.svg" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

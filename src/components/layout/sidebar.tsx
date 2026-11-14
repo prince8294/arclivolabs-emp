@@ -34,24 +34,24 @@ export function Sidebar({
       {mobileOpen && (
         <button
           aria-label="Close navigation"
-          className="fixed inset-0 z-30 bg-black/60 lg:hidden"
+          className="fixed inset-0 z-30 bg-black/70 backdrop-blur-sm lg:hidden"
           onClick={onClose}
         />
       )}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-[272px] flex-col border-r border-white/[0.06] bg-sidebar transition-transform duration-200 lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-[272px] flex-col border-r border-white/[0.07] bg-sidebar/95 shadow-[20px_0_80px_rgba(3,1,7,0.16)] backdrop-blur-xl transition-transform duration-200 lg:translate-x-0 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         aria-label={`${variant === "admin" ? "Admin" : "Employee"} navigation`}
       >
-        <div className="flex h-[76px] items-center justify-between border-b border-white/[0.06] px-6">
+        <div className="flex h-[76px] items-center justify-between border-b border-white/[0.06] px-5">
           <Link href={variant === "admin" ? "/admin/dashboard" : "/employee/dashboard"} className="flex items-center gap-3" onClick={onClose}>
-            <span className="flex size-9 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 text-sm font-bold text-white shadow-lg shadow-indigo-950/50">
-              {companyLogoUrl ? <img src={companyLogoUrl} alt="" className="size-full object-contain" referrerPolicy="no-referrer" /> : "A"}
+            <span className="flex size-10 items-center justify-center overflow-hidden rounded-[14px] border border-white/10 bg-[#21152f] text-sm font-bold text-white shadow-[0_10px_30px_rgba(169,140,255,0.16)]">
+              <img src={companyLogoUrl || "/artwork/arclivo-mark.svg"} alt="" className="size-full object-contain" referrerPolicy="no-referrer" />
             </span>
             <span>
-              <span className="block text-[15px] font-semibold tracking-tight text-white">{workspaceName}</span>
-              <span className="mt-0.5 block text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">Workspace</span>
+              <span className="block text-[14px] font-semibold uppercase tracking-[0.08em] text-white">{workspaceName}</span>
+              <span className="mt-1 block text-[9px] font-medium uppercase tracking-[0.22em] text-violet-300/55">Team workspace</span>
             </span>
           </Link>
           <button type="button" onClick={onClose} className="rounded-lg p-2 text-slate-400 hover:bg-white/5 lg:hidden" aria-label="Close menu">
@@ -59,7 +59,7 @@ export function Sidebar({
           </button>
         </div>
 
-        <div className="px-4 pb-2 pt-7">
+        <div className="px-4 pb-2 pt-6">
           <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
             {variant === "admin" ? "Administration" : "Workspace"}
           </p>
@@ -75,13 +75,14 @@ export function Sidebar({
                 href={href}
                 onClick={onClose}
                 aria-current={active ? "page" : undefined}
-                className={`group flex min-h-11 items-center gap-3 rounded-xl px-3 text-[13px] transition-colors ${
+                className={`group relative flex min-h-11 items-center gap-3 rounded-xl px-3 text-[13px] transition-all duration-200 ${
                   active
-                    ? "bg-accent/15 font-medium text-violet-100"
-                    : "text-slate-400 hover:bg-white/[0.04] hover:text-slate-100"
+                    ? "bg-gradient-to-r from-accent/18 to-fuchsia-400/[0.055] font-medium text-violet-50 shadow-[inset_0_0_0_1px_rgba(169,140,255,0.1)]"
+                    : "text-slate-400 hover:translate-x-0.5 hover:bg-white/[0.04] hover:text-slate-100"
                 }`}
               >
-                <Icon size={17} strokeWidth={1.8} className={active ? "text-accent" : "text-slate-500 group-hover:text-slate-300"} />
+                {active && <span className="absolute -left-0.5 h-5 w-0.5 rounded-full bg-gradient-to-b from-violet-300 to-fuchsia-300" />}
+                <Icon size={17} strokeWidth={1.8} className={active ? "text-violet-300" : "text-slate-500 group-hover:text-slate-300"} />
                 <span className="min-w-0 flex-1 truncate">{label}</span>
                 {!available && <span className="size-1.5 rounded-full bg-slate-600" aria-label="Coming later" title="Coming later" />}
               </Link>
@@ -101,7 +102,7 @@ export function Sidebar({
         </div>
 
         <div className="border-t border-white/[0.06] p-4">
-          <div className="flex items-center gap-3 rounded-xl bg-white/[0.035] p-3">
+          <div className="flex items-center gap-3 rounded-2xl border border-white/[0.055] bg-white/[0.028] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.025)]">
             <UserAvatar name={name} className="size-9 text-xs" />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-slate-100">{name}</p>

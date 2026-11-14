@@ -12,13 +12,13 @@ export function Input({ label, error, id, className = "", trailing, ...props }: 
 
   return (
     <div className="space-y-2">
-      <label htmlFor={inputId} className="block text-sm font-medium text-slate-200">
+      <label htmlFor={inputId} className="block text-[13px] font-medium text-slate-200">
         {label}
       </label>
       <div className="relative">
         <input
           id={inputId}
-          className={`min-h-12 w-full rounded-xl border bg-[#111827] px-4 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-accent focus:ring-4 focus:ring-accent/10 ${
+          className={`min-h-12 w-full rounded-xl border bg-[#130f1b] px-4 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] outline-none transition placeholder:text-slate-600 hover:border-white/15 focus:border-accent/70 focus:ring-4 focus:ring-accent/10 ${
             error ? "border-rose-400/70" : "border-white/10"
           } ${trailing ? "pr-12" : ""} ${className}`}
           aria-invalid={Boolean(error)}

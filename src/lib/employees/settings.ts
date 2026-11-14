@@ -27,7 +27,7 @@ export const getWorkspaceBranding = cache(async () => {
     .lean();
   return {
     workspaceName: settings?.workspaceName ?? "ArclivoLabs",
-    companyLogoUrl: settings?.companyLogoUrl ?? "",
+    companyLogoUrl: settings?.companyLogoUrl || "/artwork/arclivo-mark.svg",
     defaultTimeZone: settings?.defaultTimeZone ?? "Asia/Kolkata",
     dateFormat: settings?.dateFormat ?? "DD/MM/YYYY",
   };

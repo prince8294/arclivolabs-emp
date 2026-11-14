@@ -111,7 +111,7 @@ export function NotificationBell({ isAdmin }: { isAdmin: boolean }) {
         <Bell size={18} strokeWidth={1.8} />
         {!!data?.unreadCount && <span className="absolute -right-0.5 -top-0.5 flex min-w-4 items-center justify-center rounded-full bg-violet-500 px-1 text-[9px] font-semibold leading-4 text-white">{data.unreadCount > 99 ? "99+" : data.unreadCount}</span>}
       </button>
-      {open && <div role="dialog" aria-label="Notifications" className="absolute right-0 top-[calc(100%+12px)] z-50 w-[min(92vw,380px)] overflow-hidden rounded-2xl border border-white/10 bg-[#151d2b] shadow-2xl">
+      {open && <div role="dialog" aria-label="Notifications" className="absolute right-0 top-[calc(100%+12px)] z-50 w-[min(92vw,380px)] overflow-hidden rounded-2xl border border-white/10 bg-[#17121f]/98 shadow-[0_24px_70px_rgba(3,1,7,0.55)] backdrop-blur-xl">
         <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-3">
           <div><h2 className="text-sm font-semibold text-white">Notifications</h2><p className="mt-0.5 text-[11px] text-slate-500">{data?.unreadCount ?? 0} unread</p></div>
           <button type="button" onClick={() => void markAllRead()} disabled={!data?.unreadCount} className="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-xs text-violet-200 hover:bg-white/5 disabled:opacity-40"><CheckCheck size={14} />Mark all read</button>

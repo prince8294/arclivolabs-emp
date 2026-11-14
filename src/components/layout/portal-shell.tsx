@@ -24,7 +24,7 @@ export function PortalShell({
   const title = useMemo(() => titleForPath(pathname, variant === "admin"), [pathname, variant]);
 
   return (
-    <div className="min-h-screen bg-canvas">
+    <div className="app-shell min-h-screen bg-canvas">
       <Sidebar
         variant={variant}
         workspaceName={branding.workspaceName}
@@ -44,7 +44,7 @@ export function PortalShell({
           onMenuClick={() => setMobileOpen(true)}
         />
         <main className="mx-auto w-full max-w-360 px-4 py-7 sm:px-7 sm:py-9 lg:px-10 lg:py-10">
-          {children}
+          <div className="page-enter">{children}</div>
         </main>
       </div>
     </div>
