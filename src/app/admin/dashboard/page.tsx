@@ -96,7 +96,7 @@ export default async function AdminDashboardPage() {
       />
       <div className="mb-7 grid grid-cols-2 gap-4 xl:grid-cols-4">
         {statistics.map(({ label, value, icon: Icon, color }) => (
-          <DashboardCard key={label} className="p-4 sm:p-5">
+          <DashboardCard key={label} className="metric-card p-4 sm:p-5">
             <div className="flex items-start justify-between gap-2">
               <p className="text-xs font-medium text-slate-400 sm:text-sm">{label}</p>
               <span className={`flex size-9 shrink-0 items-center justify-center rounded-xl ${color}`}><Icon size={17} /></span>
@@ -111,7 +111,7 @@ export default async function AdminDashboardPage() {
           { label: "Pending task reviews", value: pendingReviews, icon: ClipboardList, href: "/admin/tasks?status=in_review", color: "text-amber-200 bg-amber-400/10" },
           { label: "Overdue tasks", value: overdueTasks, icon: CalendarDays, href: "/admin/tasks", color: "text-rose-200 bg-rose-400/10" },
         ].map(({ label, value, icon: Icon, href, color }) => (
-          <Link href={href} key={label} className="rounded-2xl border border-white/[0.06] bg-panel p-4 shadow-card transition hover:border-white/10 sm:p-5">
+          <Link href={href} key={label} className="metric-card surface-link rounded-[20px] border border-white/[0.07] p-4 shadow-card sm:p-5">
             <div className="flex items-start justify-between gap-2"><p className="text-xs font-medium text-slate-400 sm:text-sm">{label}</p><span className={`flex size-9 items-center justify-center rounded-xl ${color}`}><Icon size={17} /></span></div>
             <p className="mt-4 text-2xl font-semibold text-white">{value}</p>
           </Link>
@@ -124,13 +124,13 @@ export default async function AdminDashboardPage() {
           { label: "Today's recorded work (UTC)", value: formatDuration(todayActivity.workDurationMs), icon: Clock3 },
           { label: "Pending activity check-ins", value: pendingActivityCheckIns, icon: CalendarDays },
         ].map(({ label, value, icon: Icon }) => (
-          <Link href="/admin/activity" key={label} className="rounded-2xl border border-white/[0.06] bg-panel p-4 shadow-card transition hover:border-white/10 sm:p-5">
+          <Link href="/admin/activity" key={label} className="metric-card surface-link rounded-[20px] border border-white/[0.07] p-4 shadow-card sm:p-5">
             <div className="flex items-start justify-between gap-2"><p className="text-xs font-medium text-slate-400 sm:text-sm">{label}</p><Icon size={16} className="text-violet-200" /></div>
             <p className="mt-4 text-xl font-semibold text-white sm:text-2xl">{value}</p>
           </Link>
         ))}
       </div>
-      <DashboardCard className="mb-7 p-4 sm:p-5">
+      <DashboardCard className="feature-panel mb-7 p-4 sm:p-5">
         <p className="mb-4 text-sm font-semibold text-slate-200">People, attendance & payments</p>
         <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
         {[
@@ -155,7 +155,7 @@ export default async function AdminDashboardPage() {
           {recentEmployees.length ? (
             <div className="divide-y divide-white/5">
               {recentEmployees.map((employee) => (
-                <Link href={`/admin/employees/${employee._id}`} key={String(employee._id)} className="flex items-center gap-3 px-5 py-4 transition hover:bg-white/2 sm:px-6">
+                <Link href={`/admin/employees/${employee._id}`} key={String(employee._id)} className="group flex items-center gap-3 px-5 py-4 transition hover:bg-white/[0.025] sm:px-6">
                   <UserAvatar name={employee.fullName} src={employee.profilePicture} className="size-10 text-xs" />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-slate-100">{employee.fullName}</p>
@@ -198,7 +198,7 @@ export default async function AdminDashboardPage() {
           <DashboardCard>
             <h2 className="text-sm font-semibold text-white">Quick actions</h2>
             <div className="mt-4 space-y-2">
-              <Link href="/admin/employees/new" className="flex min-h-11 items-center gap-2.5 rounded-xl bg-accent px-4 text-sm font-semibold text-white transition hover:bg-violet-500">
+              <Link href="/admin/employees/new" className="flex min-h-11 items-center gap-2.5 rounded-xl border border-violet-300/20 bg-gradient-to-r from-[#8f72eb] to-[#a77ee7] px-4 text-sm font-semibold text-white shadow-lg shadow-violet-950/25 transition hover:-translate-y-0.5 hover:brightness-110">
                 <Plus size={16} /> Add new employee
               </Link>
               <Link href="/admin/employees" className="flex min-h-11 items-center justify-center rounded-xl border border-white/10 bg-white/3 px-4 text-sm font-medium text-slate-200 transition hover:bg-white/7">
@@ -216,10 +216,10 @@ export default async function AdminDashboardPage() {
       </div>
       <DashboardCard className="mt-6">
         <div className="mb-4"><h2 className="text-sm font-semibold text-white">Recent activity</h2><p className="mt-1 text-xs text-slate-500">Task submissions, employee account changes, and published announcements</p></div>
-        <div className="grid gap-5 lg:grid-cols-3">
-          <section><h3 className="mb-2 text-xs font-medium text-slate-300">Task submissions</h3>{recentSubmissions.length ? <div className="space-y-2">{recentSubmissions.map((submission) => <Link key={String(submission._id)} href={`/admin/tasks/${submission.task?._id ?? ""}`} className="block rounded-lg px-2 py-2 hover:bg-white/[0.03]"><span className="block truncate text-xs text-slate-200">{submission.task?.title ?? "Task unavailable"}</span><span className="mt-1 block truncate text-[10px] text-slate-500">{submission.employee?.fullName ?? "Employee"} · {formatWorkDate(submission.submittedAt)}</span></Link>)}</div> : <p className="text-xs text-slate-500">No task submissions yet.</p>}</section>
-          <section><h3 className="mb-2 text-xs font-medium text-slate-300">Employee updates</h3>{recentEmployeeUpdates.length ? <div className="space-y-2">{recentEmployeeUpdates.map((employee) => <Link key={String(employee._id)} href={`/admin/employees/${employee._id}`} className="block rounded-lg px-2 py-2 hover:bg-white/[0.03]"><span className="block truncate text-xs text-slate-200">{employee.fullName}</span><span className="mt-1 block truncate text-[10px] capitalize text-slate-500">{employee.role} · Updated {formatWorkDate(employee.updatedAt)}</span></Link>)}</div> : <p className="text-xs text-slate-500">No employee updates yet.</p>}</section>
-          <section><h3 className="mb-2 text-xs font-medium text-slate-300">Published announcements</h3>{recentAnnouncements.length ? <div className="space-y-2">{recentAnnouncements.map((announcement) => <Link key={String(announcement._id)} href="/admin/announcements" className="block rounded-lg px-2 py-2 hover:bg-white/[0.03]"><span className={`block truncate text-xs ${announcement.priority === "urgent" ? "text-rose-200" : "text-slate-200"}`}>{announcement.title}</span><span className="mt-1 block truncate text-[10px] text-slate-500">{announcementCategoryLabels[announcement.category as keyof typeof announcementCategoryLabels]} · {announcementPriorityLabels[announcement.priority as keyof typeof announcementPriorityLabels]}</span></Link>)}</div> : <p className="text-xs text-slate-500">No published announcements.</p>}</section>
+        <div className="grid gap-3 lg:grid-cols-3">
+          <section className="activity-column"><h3 className="mb-2 text-xs font-medium text-slate-300">Task submissions</h3>{recentSubmissions.length ? <div className="space-y-1">{recentSubmissions.map((submission) => <Link key={String(submission._id)} href={`/admin/tasks/${submission.task?._id ?? ""}`} className="block rounded-lg px-2 py-2 hover:bg-white/[0.03]"><span className="block truncate text-xs text-slate-200">{submission.task?.title ?? "Task unavailable"}</span><span className="mt-1 block truncate text-[10px] text-slate-500">{submission.employee?.fullName ?? "Employee"} · {formatWorkDate(submission.submittedAt)}</span></Link>)}</div> : <p className="text-xs text-slate-500">No task submissions yet.</p>}</section>
+          <section className="activity-column"><h3 className="mb-2 text-xs font-medium text-slate-300">Employee updates</h3>{recentEmployeeUpdates.length ? <div className="space-y-1">{recentEmployeeUpdates.map((employee) => <Link key={String(employee._id)} href={`/admin/employees/${employee._id}`} className="block rounded-lg px-2 py-2 hover:bg-white/[0.03]"><span className="block truncate text-xs text-slate-200">{employee.fullName}</span><span className="mt-1 block truncate text-[10px] capitalize text-slate-500">{employee.role} · Updated {formatWorkDate(employee.updatedAt)}</span></Link>)}</div> : <p className="text-xs text-slate-500">No employee updates yet.</p>}</section>
+          <section className="activity-column"><h3 className="mb-2 text-xs font-medium text-slate-300">Published announcements</h3>{recentAnnouncements.length ? <div className="space-y-1">{recentAnnouncements.map((announcement) => <Link key={String(announcement._id)} href="/admin/announcements" className="block rounded-lg px-2 py-2 hover:bg-white/[0.03]"><span className={`block truncate text-xs ${announcement.priority === "urgent" ? "text-rose-200" : "text-slate-200"}`}>{announcement.title}</span><span className="mt-1 block truncate text-[10px] text-slate-500">{announcementCategoryLabels[announcement.category as keyof typeof announcementCategoryLabels]} · {announcementPriorityLabels[announcement.priority as keyof typeof announcementPriorityLabels]}</span></Link>)}</div> : <p className="text-xs text-slate-500">No published announcements.</p>}</section>
         </div>
       </DashboardCard>
     </>

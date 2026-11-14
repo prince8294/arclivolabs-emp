@@ -72,7 +72,7 @@ export function ProjectList() {
     <>
       <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
         <PageHeading title="Projects" description="Plan and track your team's development work." />
-        <Link href="/admin/projects/new" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-accent px-4 text-sm font-semibold text-white transition hover:bg-violet-500"><Plus size={16} /> New project</Link>
+        <Link href="/admin/projects/new" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-violet-300/20 bg-gradient-to-r from-[#8f72eb] to-[#a77ee7] px-4 text-sm font-semibold text-white shadow-lg shadow-violet-950/25 transition hover:-translate-y-0.5 hover:brightness-110"><Plus size={16} /> New project</Link>
       </div>
       <div className="mb-6 grid grid-cols-2 gap-3 xl:grid-cols-4">
         {[
@@ -81,13 +81,13 @@ export function ProjectList() {
           ["Completed", data?.stats.completedProjects ?? 0],
           ["Overdue", data?.stats.overdueProjects ?? 0],
         ].map(([label, count]) => (
-          <DashboardCard key={String(label)} className="p-4 sm:p-5">
+          <DashboardCard key={String(label)} className="metric-card p-4 sm:p-5">
             <p className="text-xs font-medium text-slate-400">{label}</p>
             <p className="mt-3 text-2xl font-semibold text-white">{loading && !data ? "—" : count}</p>
           </DashboardCard>
         ))}
       </div>
-      <DashboardCard className="mb-5 p-4 sm:p-5">
+      <DashboardCard className="filter-surface mb-5 p-4 sm:p-5">
         <div className="grid gap-3 md:grid-cols-[minmax(240px,1fr)_200px_180px]">
           <label className="relative block"><span className="sr-only">Search projects</span><Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" /><input value={query} onChange={(event) => setFilter(setQuery, event.target.value)} placeholder="Search project name" className="h-11 w-full rounded-xl border border-white/10 bg-sidebar pl-10 pr-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-accent" /></label>
           <select aria-label="Filter by project status" value={status} onChange={(event) => setFilter(setStatus, event.target.value)} className="h-11 rounded-xl border border-white/10 bg-sidebar px-3 text-sm text-slate-200 outline-none focus:border-accent">
@@ -108,7 +108,7 @@ export function ProjectList() {
                 const percent = project.progress.total ? Math.round((project.progress.completed / project.progress.total) * 100) : 0;
                 const overdue = !archived && !["completed", "cancelled"].includes(project.status) && isWorkDateOverdue(project.deadline);
                 return (
-                  <Link key={project._id} href={`/admin/projects/${project._id}`} className="block rounded-2xl border border-white/[0.06] bg-panel p-4 transition hover:border-white/10 hover:bg-white/[0.035] sm:p-5">
+                  <Link key={project._id} href={`/admin/projects/${project._id}`} className="surface-link block rounded-[20px] border border-white/[0.07] bg-panel p-4 sm:p-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2"><h2 className="truncate text-sm font-semibold text-white">{project.name}</h2><span className="font-mono text-[10px] text-slate-500">{project.projectId}</span></div>

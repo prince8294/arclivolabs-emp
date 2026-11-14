@@ -117,7 +117,7 @@ export default async function EmployeeDashboardPage() {
   return (
     <>
       <PageHeading title={`Welcome, ${firstName}`} description={`Your personal workspace at ${branding.workspaceName} · ${formatWorkspaceDate(new Date(), branding.defaultTimeZone, branding.dateFormat)}`} />
-      <DashboardCard className="mb-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+      <DashboardCard className="feature-panel mb-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
           <UserAvatar name={employee.fullName} src={employee.profilePicture} className="size-12 text-sm" />
           <div>
@@ -131,13 +131,13 @@ export default async function EmployeeDashboardPage() {
       </DashboardCard>
       <div className="mb-6 grid grid-cols-2 gap-3 xl:grid-cols-4">
         {statistics.map(({ label, count, icon: StatisticIcon, href }) => {
-          return <Link key={label} href={href} className="rounded-2xl border border-white/[0.06] bg-panel p-4 shadow-card transition hover:border-white/10 sm:p-5">
+          return <Link key={label} href={href} className="metric-card surface-link rounded-[20px] border border-white/[0.07] p-4 shadow-card sm:p-5">
             <div className="flex items-center justify-between gap-2"><p className="text-xs font-medium text-slate-400">{label}</p><span className="flex size-8 items-center justify-center rounded-lg bg-accent/10 text-violet-200"><StatisticIcon size={15} /></span></div>
             <p className="mt-3 text-2xl font-semibold text-white">{count}</p>
           </Link>;
         })}
       </div>
-      <DashboardCard className="mb-6">
+      <DashboardCard className="feature-panel mb-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2"><Activity size={16} className="text-violet-200" /><h2 className="text-sm font-semibold text-white">Today's work activity (UTC)</h2></div>
@@ -149,7 +149,7 @@ export default async function EmployeeDashboardPage() {
             <p className="mt-3 text-xs text-slate-500">Latest daily report: {latestReport ? latestReport.status === "submitted" ? "Submitted" : "Draft to complete" : "None yet"}</p>
             <p className="mt-2 flex items-center gap-1.5 text-[11px] text-slate-600"><Clock3 size={12} />Recorded timer data does not verify continuous activity.</p>
           </div>
-          <Link href="/employee/activity" className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500">
+          <Link href="/employee/activity" className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl border border-violet-300/20 bg-gradient-to-r from-[#8f72eb] to-[#a77ee7] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-950/25 transition hover:-translate-y-0.5 hover:brightness-110">
             {activeSession?.status === "on_break" ? <Play size={15} /> : activeSession ? <Coffee size={15} /> : <Play size={15} />}
             {activeSession?.status === "on_break" ? "Resume work" : activeSession ? "Manage session" : "Start work"}
             <ArrowRight size={14} />
